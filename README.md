@@ -1,0 +1,1 @@
+This project is a part of Odin proj made with help of the tutorial and spec folder
