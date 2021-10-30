@@ -91,9 +91,16 @@ class TicTacToe
       end
       if won?
         puts "Congrats, #{winner}!"
+        one_more
       elsif draw?
-        puts "\nOne more?"
+        one_more
       end
+    end
+
+    def one_more
+      puts "\nOne more? press 'y' for one more or type 'exit'"
+      user_input = gets.chomp
+      TicTacToe.new.play if user_input == 'y'
     end
 end
 
