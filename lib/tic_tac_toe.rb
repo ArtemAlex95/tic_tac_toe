@@ -17,11 +17,11 @@ class TicTacToe
   ].freeze
 
   def display_board
-    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
     puts '-----------'
     puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
     puts '-----------'
-    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
   end
 
   def input_to_index(string)
@@ -48,8 +48,14 @@ class TicTacToe
     turn_count.even? ? 'X' : 'O'
   end
 
+  def display_valid_moves
+    arr = []
+    @board.each_with_index { |v, i| arr.push(i + 1) if v == ' ' }
+    arr.join(', ')
+  end
+
   def turn
-    puts 'Please, enter a number between 1-9'
+    puts "\nPlease enter the available numbers as shown on the numpad: #{display_valid_moves}"
     user_input = gets.chomp
     index = input_to_index(user_input)
     if valid_move?(index)
@@ -89,9 +95,10 @@ class TicTacToe
   def play
     turn until over?
     if won?
-      puts "Congrats, #{winner}!"
+      puts "\nCongrats, #{winner}!"
       one_more
     elsif draw?
+      puts "\nIt was a worthy battle!"
       one_more
     end
   end
